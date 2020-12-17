@@ -55,19 +55,10 @@ export default class AnalyticsPlugin {
 
   trackEvent({
     event = null,
-    category = null,
-    action = null,
-    label = null,
-    value = null,
-    noninteraction = false,
     ...rest
   } = {}) {
     logDebug('Dispatching event', {
       event,
-      category,
-      action,
-      label,
-      value,
       ...rest
     })
 
@@ -75,11 +66,6 @@ export default class AnalyticsPlugin {
       let dataLayer = (window.dataLayer = window.dataLayer || [])
       dataLayer.push({
         event: event || 'interaction',
-        category,
-        action: action,
-        label,
-        value: value,
-        'interaction-type': noninteraction,
         ...rest
       })
     }
